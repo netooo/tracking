@@ -13,19 +13,19 @@ func main() {
 	app.Version = "0.0.1"
 	app.EnableBashCompletion = true
 
-	projectIDFlag := &cli.IntFlag{
-		Name:  "project-id, P",
-		Usage: "project id",
+	contentIDFlag := &cli.IntFlag{
+		Name:  "content-id, C",
+		Usage: "content id",
 	}
 
 	app.Commands = []*cli.Command{
 		{
-			Name:    "add",
-			Aliases: []string{"a"},
+			Name:    "add-task",
+			Aliases: []string{"at"},
 			Usage:   "Add task",
-			Action:  Add,
+			Action:  AddTask,
 			Flags: []cli.Flag{
-				projectIDFlag,
+				contentIDFlag,
 			},
 			ArgsUsage: "<Task name>",
 		},
