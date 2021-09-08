@@ -2,9 +2,11 @@ package tracking
 
 import (
 	"context"
+	"github.com/rkoesters/xdg/basedir"
 	"golang.org/x/oauth2/google"
 	"google.golang.org/api/sheets/v4"
 	"io/ioutil"
+	"path/filepath"
 )
 
 type SheetClient struct {
@@ -13,12 +15,14 @@ type SheetClient struct {
 }
 
 func NewSheetClient(ctx context.Context, spreadsheetID string) (*SheetClient, error) {
-	b, err := ioutil.ReadFile("secret.json")
+	secretPath := filepath.Join(basedir.ConfigHome, "tracking", "secret.json")
+	secretBlob, err := ioutil.ReadFile(secretPath)
 	if err != nil {
 		return nil, err
 	}
+
 	// read & write permission
-	jwt, err := google.JWTConfigFromJSON(b, "https://www.googleapis.com/auth/spreadsheets")
+	jwt, err := google.JWTConfigFromJSON(secretBlob, "https://www.googleapis.com/auth/spreadsheets")
 	if err != nil {
 		return nil, err
 	}
