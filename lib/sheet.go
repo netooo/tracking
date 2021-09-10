@@ -56,3 +56,13 @@ func GetSheetID() (string, error) {
 
 	return sheetId, nil
 }
+
+func (s *SheetClient) Append(sheetName string, values [][]interface{}) error {
+	_, err := s.srv.Spreadsheets.Values.Append(s.spreadsheetID, sheetName, &sheets.ValueRange{
+		Values: values,
+	}).ValueInputOption("USER_ENTERED").InsertDataOption("INSERT_ROWS").Do()
+	if err != nil {
+		return err
+	}
+	return nil
+}
