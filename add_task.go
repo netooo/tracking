@@ -9,12 +9,13 @@ import (
 
 func AddTask(c *cli.Context) error {
 	task := tracking.Task{}
-	if !c.Args().Present() {
+
+	if c.String("name") == "" {
 		return errors.New("command failed")
 	}
 
-	task.Name = c.Args().First()
-	task.ContentID = c.Int("content-id")
+	task.Name = c.String("name")
+	task.ContentID = c.Int("content")
 	if err := task.Add(context.Background()); err != nil {
 		return err
 	}
