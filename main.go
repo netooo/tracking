@@ -19,8 +19,8 @@ func main() {
 	}
 
 	contentIDFlag := &cli.IntFlag{
-		Name:  "content-id, C",
-		Usage: "content id",
+		Name:  "content, c",
+		Usage: "-content {contentID}",
 	}
 
 	app.Commands = []*cli.Command{
