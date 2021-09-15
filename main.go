@@ -18,9 +18,9 @@ func main() {
 		Usage: "-name {task name}",
 	}
 
-	contentIDFlag := &cli.IntFlag{
+	contentLineFlag := &cli.IntFlag{
 		Name:  "content, c",
-		Usage: "-content {contentID}",
+		Usage: "-content {content line number}",
 	}
 
 	app.Commands = []*cli.Command{
@@ -31,7 +31,7 @@ func main() {
 			Action:  AddTask,
 			Flags: []cli.Flag{
 				taskNameFlag,
-				contentIDFlag,
+				contentLineFlag,
 			},
 			ArgsUsage: "<Task name>",
 		},

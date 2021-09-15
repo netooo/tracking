@@ -5,9 +5,9 @@ import (
 )
 
 type Task struct {
-	ID        int    `json:"id"`
-	Name      string `json:"name"`
-	ContentID int    `json:"content_id"`
+	ID          int    `json:"id"`
+	Name        string `json:"name"`
+	ContentLine int    `json:"content_line"`
 }
 
 func (t *Task) Add(ctx context.Context) error {
@@ -20,7 +20,7 @@ func (t *Task) Add(ctx context.Context) error {
 		{
 			t.ID,
 			t.Name,
-			t.ContentID,
+			t.ContentLine,
 		},
 	}); err != nil {
 		panic(err)

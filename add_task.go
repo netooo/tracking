@@ -19,7 +19,7 @@ func AddTask(c *cli.Context) error {
 	rand.Seed(time.Now().UnixNano())
 	task.ID = rand.Intn(99999999) + 1
 	task.Name = c.String("name")
-	task.ContentID = c.Int("content")
+	task.ContentLine = c.Int("content")
 	if err := task.Add(context.Background()); err != nil {
 		return err
 	}
