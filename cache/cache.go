@@ -5,6 +5,7 @@ import (
 	"github.com/netooo/TimeTracking/lib"
 	"github.com/rkoesters/xdg/basedir"
 	"io/ioutil"
+	"os"
 	"path/filepath"
 )
 
@@ -12,7 +13,11 @@ var c *Cache
 
 type Cache struct {
 	Filename string `json:"filename"`
-	TaskID   int    `json:"task_id"`
+	Content  Content
+}
+
+type Content struct {
+	TaskID   int `json:"task_id"`
 	Task     *tracking.Task
 	Begin    string `json:"begin"`
 	End      string `json:"end"`
