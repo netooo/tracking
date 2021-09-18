@@ -5,11 +5,16 @@ import (
 	"github.com/netooo/TimeTracking/lib"
 	"github.com/rkoesters/xdg/basedir"
 	"io/ioutil"
+	"log"
 	"os"
 	"path/filepath"
 )
 
-var c *Cache
+var (
+	c         *Cache
+	cacheDir  = filepath.Join(basedir.CacheHome, "tracking")
+	cacheFile = "cache.json"
+)
 
 type Cache struct {
 	Filename string `json:"filename"`
@@ -27,7 +32,7 @@ type Content struct {
 func New() *Cache {
 	c = new(Cache)
 
-	cachePath := filepath.Join(basedir.CacheHome, "tracking", "cache.json")
+	cachePath := filepath.Join(cacheDir, cacheFile)
 	c.Filename = cachePath
 	return c
 }
@@ -35,8 +40,20 @@ func New() *Cache {
 func Init() { c.Init() }
 func (c *Cache) Init() error {
 	if err := c.Read(); err != nil {
-		if err = c.Write(); err != nil {
-			return err
+		if _, err := os.Stat(cacheDir); os.IsNotExist(err) {
+			if err := os.Mkdir(cacheDir, 0777); err != nil {
+				log.Fatal(err)
+				return err
+			}
+		}
+
+		if _, err := os.Stat(c.Filename); os.IsNotExist(err) {
+			fp, err := os.Create(c.Filename)
+			if err != nil {
+				log.Fatal(err)
+				return err
+			}
+			defer fp.Close()
 		}
 	}
 	return nil
