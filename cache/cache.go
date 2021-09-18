@@ -2,7 +2,6 @@ package cache
 
 import (
 	"encoding/json"
-	"github.com/netooo/TimeTracking/lib"
 	"github.com/rkoesters/xdg/basedir"
 	"io/ioutil"
 	"log"
@@ -22,8 +21,8 @@ type Cache struct {
 }
 
 type Content struct {
-	TaskID   int `json:"task_id"`
-	Task     *tracking.Task
+	TaskID   int    `json:"task_id"`
+	TaskName string `json:"task_name"`
 	Begin    string `json:"begin"`
 	End      string `json:"end"`
 	Duration int64  `json:"duration"`
