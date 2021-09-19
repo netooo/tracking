@@ -2,11 +2,15 @@ package main
 
 import (
 	"fmt"
+	"github.com/netooo/TimeTracking/cache"
 	"github.com/urfave/cli"
 	"os"
 )
 
 func main() {
+	cache.New()
+	cache.Init()
+
 	app := cli.NewApp()
 	app.Name = "Tracking"
 	app.Usage = "Tracking CLI Client"
