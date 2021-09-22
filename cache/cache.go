@@ -38,46 +38,51 @@ func New() *Cache {
 
 func Init() { c.Init() }
 func (c *Cache) Init() error {
-	if err := c.Read(); err != nil {
-		if _, err := os.Stat(cacheDir); os.IsNotExist(err) {
-			if err := os.Mkdir(cacheDir, 0777); err != nil {
-				log.Fatal(err)
-				return err
-			}
+	if _, err := os.Stat(cacheDir); os.IsNotExist(err) {
+		if err := os.Mkdir(cacheDir, 0777); err != nil {
+			log.Fatal(err)
+			return err
 		}
+	}
 
-		if _, err := os.Stat(c.Filename); os.IsNotExist(err) {
-			fp, err := os.Create(c.Filename)
-			if err != nil {
-				log.Fatal(err)
-				return err
-			}
-			defer fp.Close()
+	if _, err := os.Stat(c.Filename); os.IsNotExist(err) {
+		fp, err := os.Create(c.Filename)
+		if err != nil {
+			log.Fatal(err)
+			return err
 		}
+		defer fp.Close()
 	}
 	return nil
 }
 
 func Read() { c.Read() }
 func (c *Cache) Read() error {
-	jsonString, err := ioutil.ReadFile(c.Filename)
+	jsonBytes, err := ioutil.ReadFile(c.Filename)
 	if err != nil {
 		return err
 	}
-	if err := json.Unmarshal(jsonString, &c.Content); err != nil {
-		return err
-	}
+
 	return nil
 }
 
 func Write() { c.Write() }
 func (c *Cache) Write() error {
-	buf, err := json.MarshalIndent(c.Content, "", "  ")
+	buf, err := json.Marshal(c.Content)
 	if err != nil {
 		return err
 	}
-	if err := ioutil.WriteFile(c.Filename, buf, os.ModePerm); err != nil {
-		return err
+
+	f, err := os.OpenFile(c.Filename, os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0600)
+	if err != nil {
+		panic(err)
 	}
+	defer f.Close()
+
+	buf = append(buf, []byte("\n")...)
+	if _, err = f.Write(buf); err != nil {
+		panic(err)
+	}
+
 	return nil
 }
