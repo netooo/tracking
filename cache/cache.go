@@ -57,11 +57,14 @@ func (c *Cache) Init() error {
 	return nil
 }
 
-func Read() (*[]Content, error) { c.Read() }
+func Read() (*[]Content, error) {
+	logs, err := c.Read()
+	return logs, err
+}
 func (c *Cache) Read() (*[]Content, error) {
 	jsonBytes, err := ioutil.ReadFile(c.Filename)
 	if err != nil {
-		return nil, err
+		log.Fatal(err)
 	}
 
 	if len(jsonBytes) == 0 {
@@ -78,20 +81,22 @@ func (c *Cache) Read() (*[]Content, error) {
 
 func Write() { c.Write() }
 func (c *Cache) Write() error {
-	buf, err := json.Marshal(c.Content)
+	logs, err := Read()
+	newLogs := append(*logs, c.Content)
+
+	buf, err := json.Marshal(newLogs)
 	if err != nil {
-		return err
+		log.Fatal(err)
 	}
 
-	f, err := os.OpenFile(c.Filename, os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0600)
+	f, err := os.OpenFile(c.Filename, os.O_CREATE|os.O_WRONLY|os.O_CREATE, 0600)
 	if err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 	defer f.Close()
 
-	buf = append(buf, []byte("\n")...)
 	if _, err = f.Write(buf); err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 
 	return nil
