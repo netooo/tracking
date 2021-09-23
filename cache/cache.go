@@ -13,6 +13,7 @@ var (
 	c         *Cache
 	cacheDir  = filepath.Join(basedir.CacheHome, "tracking")
 	cacheFile = "cache.json"
+	contents  []Content
 )
 
 type Cache struct {
@@ -56,14 +57,23 @@ func (c *Cache) Init() error {
 	return nil
 }
 
-func Read() { c.Read() }
-func (c *Cache) Read() error {
+func Read() (*[]Content, error) { c.Read() }
+func (c *Cache) Read() (*[]Content, error) {
 	jsonBytes, err := ioutil.ReadFile(c.Filename)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	return nil
+	if len(jsonBytes) == 0 {
+		return &contents, nil
+	}
+
+	err = json.Unmarshal(jsonBytes, &contents)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	return &contents, nil
 }
 
 func Write() { c.Write() }
