@@ -42,7 +42,7 @@ func main() {
 				taskNameFlag,
 				contentLineFlag,
 			},
-			ArgsUsage: "<Task name>",
+			ArgsUsage: "",
 		},
 		{
 			Name:    "start",
@@ -52,7 +52,7 @@ func main() {
 			Flags: []cli.Flag{
 				taskIDFlag,
 			},
-			ArgsUsage: "<Task name>",
+			ArgsUsage: "",
 		},
 	}
 	if err := app.Run(os.Args); err != nil {
