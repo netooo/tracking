@@ -39,7 +39,7 @@ func TaskNew() *TaskCache {
 	ta = new(TaskCache)
 
 	taskPath := filepath.Join(cacheDir, taskFile)
-	tr.Filename = taskPath
+	ta.Filename = taskPath
 	return ta
 }
 
