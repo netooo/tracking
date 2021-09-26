@@ -43,9 +43,9 @@ func (ta *TaskCache) Read() (*[]Task, error) {
 func TaskWrite() { ta.Write() }
 func (ta *TaskCache) Write() error {
 	logs, err := TaskRead()
-	newLogs := append(*logs, ta.Task)
+	newTasks := append(*logs, ta.Task)
 
-	buf, err := json.Marshal(newLogs)
+	buf, err := json.Marshal(newTasks)
 	if err != nil {
 		log.Fatal(err)
 	}
