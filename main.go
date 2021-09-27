@@ -2,14 +2,13 @@ package main
 
 import (
 	"fmt"
-	"github.com/netooo/TimeTracking/cache"
+	"github.com/netooo/TimeTracking/lib"
 	"github.com/urfave/cli"
 	"os"
 )
 
 func main() {
-	cache.New()
-	cache.Init()
+	tracking.CacheInit()
 
 	app := cli.NewApp()
 	app.Name = "Tracking"
