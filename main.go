@@ -47,7 +47,7 @@ func main() {
 			Name:    "start",
 			Aliases: []string{"s"},
 			Usage:   "Start Task",
-			Action:  StartTask,
+			Action:  Start,
 			Flags: []cli.Flag{
 				taskIDFlag,
 			},
