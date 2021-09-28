@@ -9,7 +9,7 @@ import (
 var (
 	trackFile = "track.json"
 	trackPath = filepath.Join(cacheDir, trackFile)
-	tracks    []Track
+	tracks    []*Track
 )
 
 type Track struct {
@@ -25,7 +25,7 @@ func (t *Track) Start() error {
 	if err != nil {
 		return err
 	}
-	newLogs := append(*logs, *t)
+	newLogs := append(logs, t)
 
 	buf, err := json.Marshal(newLogs)
 	if err != nil {

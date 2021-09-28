@@ -59,14 +59,14 @@ func TaskRead() (*[]Task, error) {
 	return &tasks, nil
 }
 
-func TrackRead() (*[]Track, error) {
+func TrackRead() ([]*Track, error) {
 	jsonBytes, err := ioutil.ReadFile(trackPath)
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	if len(jsonBytes) == 0 {
-		return &tracks, nil
+		return tracks, nil
 	}
 
 	err = json.Unmarshal(jsonBytes, &tracks)
@@ -74,5 +74,5 @@ func TrackRead() (*[]Track, error) {
 		log.Fatal(err)
 	}
 
-	return &tracks, nil
+	return tracks, nil
 }
