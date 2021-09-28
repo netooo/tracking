@@ -1,7 +1,6 @@
 package main
 
 import (
-	"context"
 	"errors"
 	"github.com/netooo/TimeTracking/lib"
 	"github.com/urfave/cli"
@@ -23,7 +22,8 @@ func AddTask(c *cli.Context) error {
 	task.ID = rand.Intn(99999999) + 1
 	task.Name = c.String("name")
 	task.ContentLine = c.Int("content")
-	if err := task.Add(context.Background()); err != nil {
+
+	if err := task.Add(); err != nil {
 		return err
 	}
 
