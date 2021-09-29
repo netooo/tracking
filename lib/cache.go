@@ -41,14 +41,14 @@ func CacheInit() error {
 	return nil
 }
 
-func TaskRead() (*[]Task, error) {
+func TaskRead() ([]*Task, error) {
 	jsonBytes, err := ioutil.ReadFile(taskPath)
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	if len(jsonBytes) == 0 {
-		return &tasks, nil
+		return tasks, nil
 	}
 
 	err = json.Unmarshal(jsonBytes, &tasks)
@@ -56,7 +56,7 @@ func TaskRead() (*[]Task, error) {
 		log.Fatal(err)
 	}
 
-	return &tasks, nil
+	return tasks, nil
 }
 
 func TrackRead() ([]*Track, error) {

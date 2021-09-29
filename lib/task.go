@@ -10,7 +10,7 @@ import (
 var (
 	taskFile = "task.json"
 	taskPath = filepath.Join(cacheDir, taskFile)
-	tasks    []Task
+	tasks    []*Task
 )
 
 type Task struct {
@@ -25,13 +25,13 @@ func (t *Task) Add() error {
 		return err
 	}
 
-	for _, task := range *taskList {
+	for _, task := range taskList {
 		if t.ID == task.ID {
 			return errors.New("the task already exists")
 		}
 	}
 
-	newTasks := append(*taskList, *t)
+	newTasks := append(taskList, t)
 	buf, err := json.Marshal(newTasks)
 	if err != nil {
 		return err
