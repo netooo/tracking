@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"os"
 	"path/filepath"
+	"time"
 )
 
 var (
@@ -13,21 +14,21 @@ var (
 )
 
 type Track struct {
-	TaskID   int    `json:"task_id"`
-	TaskName string `json:"task_name"`
-	Begin    string `json:"begin"`
-	End      string `json:"end"`
-	Duration int64  `json:"duration"`
+	TaskID     int           `json:"task_id"`
+	TaskName   string        `json:"task_name"`
+	StartedAt  time.Time     `json:"started_at"`
+	FinishedAt time.Time     `json:"finished_at"`
+	Duration   time.Duration `json:"duration"`
 }
 
 func (t *Track) Start() error {
-	logs, err := TrackRead()
+	histories, err := TrackRead()
 	if err != nil {
 		return err
 	}
-	newLogs := append(logs, t)
+	newHistories := append(histories, t)
 
-	buf, err := json.Marshal(newLogs)
+	buf, err := json.Marshal(newHistories)
 	if err != nil {
 		return err
 	}
