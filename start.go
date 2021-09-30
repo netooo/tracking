@@ -38,8 +38,8 @@ func Start(c *cli.Context) error {
 	}
 
 	if len(histories) > 0 {
-		lastLog := histories[len(histories)-1]
-		if lastLog.FinishedAt.IsZero() {
+		lastHistory := histories[len(histories)-1]
+		if lastHistory.FinishedAt.IsZero() {
 			return errors.New("other task is running")
 		}
 	}
