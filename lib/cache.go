@@ -76,3 +76,22 @@ func TrackRead() ([]*Track, error) {
 
 	return tracks, nil
 }
+
+func Write(histories []*Track) error {
+	buf, err := json.Marshal(histories)
+	if err != nil {
+		return err
+	}
+
+	f, err := os.OpenFile(trackPath, os.O_CREATE|os.O_WRONLY, 0600)
+	if err != nil {
+		return err
+	}
+	defer f.Close()
+
+	if _, err = f.Write(buf); err != nil {
+		return err
+	}
+
+	return nil
+}
