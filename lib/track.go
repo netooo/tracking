@@ -1,8 +1,6 @@
 package tracking
 
 import (
-	"encoding/json"
-	"os"
 	"path/filepath"
 	"time"
 )
@@ -28,18 +26,22 @@ func (t *Track) Start() error {
 	}
 	newHistories := append(histories, t)
 
-	buf, err := json.Marshal(newHistories)
+	if err := Write(newHistories); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (t Track) Finish() error {
+	histories, err := TrackRead()
 	if err != nil {
 		return err
 	}
 
-	f, err := os.OpenFile(trackPath, os.O_CREATE|os.O_WRONLY|os.O_CREATE, 0600)
-	if err != nil {
-		return err
-	}
-	defer f.Close()
+	newHistories := append(histories[:len(histories)-1], &t)
 
-	if _, err = f.Write(buf); err != nil {
+	if err := Write(newHistories); err != nil {
 		return err
 	}
 

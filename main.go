@@ -53,6 +53,14 @@ func main() {
 			},
 			ArgsUsage: "",
 		},
+		{
+			Name:      "finish",
+			Aliases:   []string{"f"},
+			Usage:     "Finish Task",
+			Action:    Finish,
+			Flags:     []cli.Flag{},
+			ArgsUsage: "",
+		},
 	}
 	if err := app.Run(os.Args); err != nil {
 		_, _ = fmt.Fprintln(os.Stderr, "Error:", err)
