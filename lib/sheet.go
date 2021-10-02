@@ -66,3 +66,13 @@ func (s *SheetClient) Append(sheetName string, values [][]interface{}) error {
 	}
 	return nil
 }
+
+func (s *SheetClient) Update(range_ string, values [][]interface{}) error {
+	_, err := s.srv.Spreadsheets.Values.Update(s.spreadsheetID, range_, &sheets.ValueRange{
+		Values: values,
+	}).ValueInputOption("USER_ENTERED").Do()
+	if err != nil {
+		return err
+	}
+	return nil
+}
