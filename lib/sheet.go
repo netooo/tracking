@@ -57,6 +57,14 @@ func GetSheetID() (string, error) {
 	return sheetId, nil
 }
 
+func (s *SheetClient) Get(range_ string) ([][]interface{}, error) {
+	resp, err := s.srv.Spreadsheets.Values.Get(s.spreadsheetID, range_).Do()
+	if err != nil {
+		return nil, err
+	}
+	return resp.Values, nil
+}
+
 func (s *SheetClient) Append(sheetName string, values [][]interface{}) error {
 	_, err := s.srv.Spreadsheets.Values.Append(s.spreadsheetID, sheetName, &sheets.ValueRange{
 		Values: values,
