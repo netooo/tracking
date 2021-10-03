@@ -2,15 +2,9 @@ package tracking
 
 import (
 	"encoding/json"
-	"github.com/rkoesters/xdg/basedir"
 	"io/ioutil"
 	"log"
 	"os"
-	"path/filepath"
-)
-
-var (
-	cacheDir = filepath.Join(basedir.CacheHome, "tracking")
 )
 
 func CacheInit() error {

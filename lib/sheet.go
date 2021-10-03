@@ -4,11 +4,9 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
-	"github.com/rkoesters/xdg/basedir"
 	"golang.org/x/oauth2/google"
 	"google.golang.org/api/sheets/v4"
 	"io/ioutil"
-	"path/filepath"
 )
 
 type SheetClient struct {
@@ -17,7 +15,6 @@ type SheetClient struct {
 }
 
 func NewSheetClient(ctx context.Context) (*SheetClient, error) {
-	secretPath := filepath.Join(basedir.ConfigHome, "tracking", "secret.json")
 	secretBlob, err := ioutil.ReadFile(secretPath)
 	if err != nil {
 		return nil, err
@@ -41,7 +38,6 @@ func NewSheetClient(ctx context.Context) (*SheetClient, error) {
 }
 
 func GetSheetID() (string, error) {
-	configPath := filepath.Join(basedir.ConfigHome, "tracking", "config.json")
 	configBlob, err := ioutil.ReadFile(configPath)
 	if err != nil {
 		return "", errors.New("command failed")

@@ -1,14 +1,11 @@
 package tracking
 
 import (
-	"path/filepath"
 	"time"
 )
 
 var (
-	trackFile = "track.json"
-	trackPath = filepath.Join(cacheDir, trackFile)
-	tracks    []*Track
+	tracks []*Track
 )
 
 type Track struct {
@@ -25,21 +22,6 @@ func (t *Track) Start() error {
 		return err
 	}
 	newHistories := append(histories, t)
-
-	if err := Write(newHistories); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (t Track) Finish() error {
-	histories, err := TrackRead()
-	if err != nil {
-		return err
-	}
-
-	newHistories := append(histories[:len(histories)-1], &t)
 
 	if err := Write(newHistories); err != nil {
 		return err

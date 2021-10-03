@@ -4,13 +4,10 @@ import (
 	"encoding/json"
 	"errors"
 	"os"
-	"path/filepath"
 )
 
 var (
-	taskFile = "task.json"
-	taskPath = filepath.Join(cacheDir, taskFile)
-	tasks    []*Task
+	tasks []*Task
 )
 
 type Task struct {
