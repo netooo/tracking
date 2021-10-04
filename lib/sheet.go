@@ -2,8 +2,6 @@ package tracking
 
 import (
 	"context"
-	"encoding/json"
-	"errors"
 	"golang.org/x/oauth2/google"
 	"google.golang.org/api/sheets/v4"
 	"io/ioutil"
@@ -30,27 +28,15 @@ func NewSheetClient(ctx context.Context) (*SheetClient, error) {
 		return nil, err
 	}
 
-	spreadsheetID, err := GetSheetID()
+	spreadsheetID, err := GetConfigString("spread_sheet_id")
+	if err != nil {
+		return nil, err
+	}
+
 	return &SheetClient{
 		srv:           srv,
 		spreadsheetID: spreadsheetID,
 	}, nil
-}
-
-func GetSheetID() (string, error) {
-	configBlob, err := ioutil.ReadFile(configPath)
-	if err != nil {
-		return "", errors.New("command failed")
-	}
-
-	var configJson interface{}
-	err = json.Unmarshal(configBlob, &configJson)
-	if err != nil {
-		return "", errors.New("command failed")
-	}
-	sheetId := configJson.(map[string]interface{})["spread_sheet_id"].(string)
-
-	return sheetId, nil
 }
 
 func (s *SheetClient) Get(range_ string) ([][]interface{}, error) {
