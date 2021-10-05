@@ -9,8 +9,7 @@ var (
 )
 
 type Track struct {
-	TaskID     int           `json:"task_id"`
-	TaskName   string        `json:"task_name"`
+	Task       Task
 	StartedAt  time.Time     `json:"started_at"`
 	FinishedAt time.Time     `json:"finished_at"`
 	Duration   time.Duration `json:"duration"`

@@ -45,8 +45,7 @@ func Start(c *cli.Context) error {
 	}
 
 	track := tracking.Track{
-		TaskID:    task.ID,
-		TaskName:  task.Name,
+		Task:      task,
 		StartedAt: time.Now(),
 	}
 
