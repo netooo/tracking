@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"errors"
 	"github.com/netooo/TimeTracking/lib"
 	"github.com/urfave/cli"
@@ -26,7 +27,7 @@ func Finish(c *cli.Context) error {
 	lastHistory.FinishedAt = now
 	lastHistory.Duration = now.Sub(lastHistory.StartedAt)
 
-	if err := lastHistory.Finish(); err != nil {
+	if err := lastHistory.Finish(context.Background()); err != nil {
 		return err
 	}
 
