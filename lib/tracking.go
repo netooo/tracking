@@ -6,6 +6,7 @@ import (
 	"github.com/rkoesters/xdg/basedir"
 	"io/ioutil"
 	"path/filepath"
+	"time"
 )
 
 var (
@@ -15,7 +16,8 @@ var (
 
 	cacheDir  = filepath.Join(basedir.CacheHome, "tracking")
 	taskPath  = filepath.Join(cacheDir, "task.json")
-	trackPath = filepath.Join(cacheDir, "track.json")
+	today     = time.Now().Format("20060102")
+	trackPath = filepath.Join(cacheDir, today+".json")
 )
 
 func GetConfigString(s string) (string, error) {
