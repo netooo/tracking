@@ -19,7 +19,7 @@ func Finish(c *cli.Context) error {
 	}
 
 	lastHistory := histories[len(histories)-1]
-	if !lastHistory.FinishedAt.IsZero() {
+	if !IsEnd(lastHistory.FinishedAt) {
 		return errors.New("task is not running")
 	}
 

@@ -39,14 +39,21 @@ func Start(c *cli.Context) error {
 
 	if len(histories) > 0 {
 		lastHistory := histories[len(histories)-1]
-		if lastHistory.FinishedAt.IsZero() {
+		if IsEnd(lastHistory.FinishedAt) {
 			return errors.New("task is running")
 		}
 	}
 
+	now := time.Now()
 	track := tracking.Track{
 		Task:      task,
-		StartedAt: time.Now(),
+		StartedAt: now,
+		FinishedAt: time.Date(
+			now.Year(),
+			now.Month(),
+			now.Day(),
+			23, 59, 59, 999999999, time.Local,
+		),
 	}
 
 	if err := track.Start(); err != nil {
@@ -54,4 +61,8 @@ func Start(c *cli.Context) error {
 	}
 
 	return nil
+}
+
+func IsEnd(t time.Time) bool {
+	return t.Hour() == 23 && t.Minute() == 59 && t.Second() == 59 && t.Nanosecond() == 999999999
 }
