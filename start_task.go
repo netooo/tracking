@@ -39,7 +39,7 @@ func Start(c *cli.Context) error {
 
 	if len(histories) > 0 {
 		lastHistory := histories[len(histories)-1]
-		if IsEnd(lastHistory.FinishedAt) {
+		if lastHistory.Duration == 0 {
 			return errors.New("task is running")
 		}
 	}
@@ -61,8 +61,4 @@ func Start(c *cli.Context) error {
 	}
 
 	return nil
-}
-
-func IsEnd(t time.Time) bool {
-	return t.Hour() == 23 && t.Minute() == 59 && t.Second() == 59 && t.Nanosecond() == 999999999
 }
