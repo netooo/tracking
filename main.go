@@ -33,6 +33,14 @@ func main() {
 
 	app.Commands = []*cli.Command{
 		{
+			Name:      "list",
+			Aliases:   []string{"l"},
+			Usage:     "Show task list",
+			Action:    List,
+			Flags:     []cli.Flag{},
+			ArgsUsage: "",
+		},
+		{
 			Name:    "add-task",
 			Aliases: []string{"at"},
 			Usage:   "Add task",
