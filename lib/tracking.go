@@ -3,10 +3,11 @@ package tracking
 import (
 	"encoding/json"
 	"errors"
-	"github.com/rkoesters/xdg/basedir"
 	"io/ioutil"
 	"path/filepath"
 	"time"
+
+	"github.com/rkoesters/xdg/basedir"
 )
 
 var (

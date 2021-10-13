@@ -2,9 +2,10 @@ package tracking
 
 import (
 	"context"
+	"io/ioutil"
+
 	"golang.org/x/oauth2/google"
 	"google.golang.org/api/sheets/v4"
-	"io/ioutil"
 )
 
 type SheetClient struct {

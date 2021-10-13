@@ -3,9 +3,10 @@ package main
 import (
 	"context"
 	"errors"
-	"github.com/netooo/TimeTracking/lib"
-	"github.com/urfave/cli"
 	"time"
+
+	tracking "github.com/netooo/TimeTracking/lib"
+	"github.com/urfave/cli"
 )
 
 func Finish(c *cli.Context) error {

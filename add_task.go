@@ -2,10 +2,11 @@ package main
 
 import (
 	"errors"
-	"github.com/netooo/TimeTracking/lib"
-	"github.com/urfave/cli"
 	"math/rand"
 	"time"
+
+	tracking "github.com/netooo/TimeTracking/lib"
+	"github.com/urfave/cli"
 )
 
 func AddTask(c *cli.Context) error {

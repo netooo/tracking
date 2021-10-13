@@ -2,9 +2,10 @@ package main
 
 import (
 	"fmt"
-	"github.com/netooo/TimeTracking/lib"
-	"github.com/urfave/cli"
 	"os"
+
+	tracking "github.com/netooo/TimeTracking/lib"
+	"github.com/urfave/cli"
 )
 
 func main() {
