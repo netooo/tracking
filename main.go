@@ -23,8 +23,8 @@ func main() {
 	}
 
 	contentLineFlag := &cli.IntFlag{
-		Name:  "content, c",
-		Usage: "-content {content line number}",
+		Name:  "line, l",
+		Usage: "-line {content line number}",
 	}
 
 	taskIDFlag := &cli.IntFlag{

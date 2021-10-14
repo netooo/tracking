@@ -15,14 +15,14 @@ func AddTask(c *cli.Context) error {
 	if c.String("name") == "" {
 		return errors.New("command failed")
 	}
-	if c.Int("content") == 0 {
+	if c.Int("line") == 0 {
 		return errors.New("command failed")
 	}
 
 	rand.Seed(time.Now().UnixNano())
 	task.ID = rand.Intn(99999999) + 1
 	task.Name = c.String("name")
-	task.ContentLine = c.Int("content")
+	task.ContentLine = c.Int("line")
 
 	if err := task.Add(); err != nil {
 		return err
