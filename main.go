@@ -42,10 +42,10 @@ func main() {
 			ArgsUsage: "",
 		},
 		{
-			Name:    "add-task",
-			Aliases: []string{"at"},
+			Name:    "add",
+			Aliases: []string{"a"},
 			Usage:   "Add task",
-			Action:  AddTask,
+			Action:  Add,
 			Flags: []cli.Flag{
 				taskNameFlag,
 				contentLineFlag,

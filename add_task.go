@@ -9,7 +9,7 @@ import (
 	"github.com/urfave/cli"
 )
 
-func AddTask(c *cli.Context) error {
+func Add(c *cli.Context) error {
 	task := tracking.Task{}
 
 	if c.String("name") == "" {
