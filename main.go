@@ -42,8 +42,8 @@ func main() {
 			ArgsUsage: "",
 		},
 		{
-			Name:    "add-task",
-			Aliases: []string{"at"},
+			Name:    "add",
+			Aliases: []string{"a"},
 			Usage:   "Add task",
 			Action:  AddTask,
 			Flags: []cli.Flag{
