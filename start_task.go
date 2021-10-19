@@ -33,7 +33,7 @@ func Start(c *cli.Context) error {
 		return errors.New("task not found")
 	}
 
-	histories, err := tracking.TrackRead()
+	histories, err := tracking.TrackRead(tracking.TodayPath)
 	if err != nil {
 		return err
 	}

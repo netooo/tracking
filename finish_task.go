@@ -10,7 +10,7 @@ import (
 )
 
 func Finish(c *cli.Context) error {
-	histories, err := tracking.TrackRead()
+	histories, err := tracking.TrackRead(tracking.TodayPath)
 	if err != nil {
 		return err
 	}

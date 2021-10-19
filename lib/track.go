@@ -20,7 +20,7 @@ type Track struct {
 }
 
 func (t *Track) Start() error {
-	histories, err := TrackRead()
+	histories, err := TrackRead(TodayPath)
 	if err != nil {
 		return err
 	}
@@ -34,7 +34,7 @@ func (t *Track) Start() error {
 }
 
 func (t Track) Finish(ctx context.Context) error {
-	histories, err := TrackRead()
+	histories, err := TrackRead(TodayPath)
 	if err != nil {
 		return err
 	}
