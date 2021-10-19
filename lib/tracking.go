@@ -12,17 +12,17 @@ import (
 
 var (
 	configDir  = filepath.Join(basedir.ConfigHome, "tracking")
-	configPath = filepath.Join(configDir, "config.json")
-	secretPath = filepath.Join(configDir, "secret.json")
+	ConfigPath = filepath.Join(configDir, "config.json")
+	SecretPath = filepath.Join(configDir, "secret.json")
 
 	cacheDir  = filepath.Join(basedir.CacheHome, "tracking")
-	taskPath  = filepath.Join(cacheDir, "task.json")
+	TaskPath  = filepath.Join(cacheDir, "task.json")
 	today     = time.Now().Format("20060102")
-	trackPath = filepath.Join(cacheDir, today+".json")
+	TodayPath = filepath.Join(cacheDir, today+".json")
 )
 
 func GetConfigString(s string) (string, error) {
-	configBlob, err := ioutil.ReadFile(configPath)
+	configBlob, err := ioutil.ReadFile(ConfigPath)
 	if err != nil {
 		return "", errors.New("command failed")
 	}

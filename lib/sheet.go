@@ -14,7 +14,7 @@ type SheetClient struct {
 }
 
 func NewSheetClient(ctx context.Context) (*SheetClient, error) {
-	secretBlob, err := ioutil.ReadFile(secretPath)
+	secretBlob, err := ioutil.ReadFile(SecretPath)
 	if err != nil {
 		return nil, err
 	}
