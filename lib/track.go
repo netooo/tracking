@@ -26,7 +26,7 @@ func (t *Track) Start() error {
 	}
 	newHistories := append(histories, t)
 
-	if err := Write(newHistories); err != nil {
+	if err := Write(TodayPath, newHistories); err != nil {
 		return err
 	}
 
@@ -41,7 +41,7 @@ func (t Track) Finish(ctx context.Context) error {
 
 	newHistories := append(histories[:len(histories)-1], &t)
 
-	if err := Write(newHistories); err != nil {
+	if err := Write(TodayPath, newHistories); err != nil {
 		return err
 	}
 

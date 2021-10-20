@@ -5,26 +5,58 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
+	"path/filepath"
+	"time"
 )
 
 func CacheInit() error {
 	if _, err := os.Stat(cacheDir); os.IsNotExist(err) {
 		if err := os.Mkdir(cacheDir, 0777); err != nil {
-			log.Fatal(err)
 			return err
 		}
 	}
 
-	if _, err := os.Stat(trackPath); os.IsNotExist(err) {
-		fp, err := os.Create(trackPath)
+	if _, err := os.Stat(TodayPath); os.IsNotExist(err) {
+		fp, err := os.Create(TodayPath)
 		if err != nil {
-			log.Fatal(err)
 			return err
 		}
 		defer fp.Close()
+
+		// 一週間前まで遡って日跨ぎのトラッキングを修正
+		// Durationを更新
+		// Sheetには書き込まない
+		for i := 1; i < 8; i++ {
+			day := time.Now().AddDate(0, 0, -i).Format("20060102")
+			dayPath := filepath.Join(cacheDir, day+".json")
+
+			if _, err := os.Stat(dayPath); !os.IsNotExist(err) {
+				histories, err := TrackRead(dayPath)
+				if err != nil {
+					log.Fatal(err)
+					return err
+				}
+
+				if len(histories) > 0 {
+					lastHistory := histories[len(histories)-1]
+
+					if lastHistory.Duration == 0 {
+						lastHistory.Duration = lastHistory.FinishedAt.Sub(lastHistory.StartedAt)
+						newHistories := append(histories[:len(histories)-1], lastHistory)
+
+						if err := Write(dayPath, newHistories); err != nil {
+							return err
+						}
+					}
+
+					break
+				}
+			}
+		}
 	}
-	if _, err := os.Stat(taskPath); os.IsNotExist(err) {
-		fp, err := os.Create(taskPath)
+
+	if _, err := os.Stat(TaskPath); os.IsNotExist(err) {
+		fp, err := os.Create(TaskPath)
 		if err != nil {
 			log.Fatal(err)
 			return err
@@ -36,7 +68,7 @@ func CacheInit() error {
 }
 
 func TaskRead() ([]*Task, error) {
-	jsonBytes, err := ioutil.ReadFile(taskPath)
+	jsonBytes, err := ioutil.ReadFile(TaskPath)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -53,7 +85,7 @@ func TaskRead() ([]*Task, error) {
 	return tasks, nil
 }
 
-func TrackRead() ([]*Track, error) {
+func TrackRead(trackPath string) ([]*Track, error) {
 	jsonBytes, err := ioutil.ReadFile(trackPath)
 	if err != nil {
 		log.Fatal(err)
@@ -71,7 +103,7 @@ func TrackRead() ([]*Track, error) {
 	return tracks, nil
 }
 
-func Write(histories []*Track) error {
+func Write(trackPath string, histories []*Track) error {
 	buf, err := json.Marshal(histories)
 	if err != nil {
 		return err
