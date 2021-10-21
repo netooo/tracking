@@ -5,7 +5,7 @@ import (
 	"time"
 
 	tracking "github.com/netooo/TimeTracking/lib"
-	"github.com/urfave/cli"
+	"github.com/urfave/cli/v2"
 )
 
 func Start(c *cli.Context) error {

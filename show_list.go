@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	tracking "github.com/netooo/TimeTracking/lib"
-	"github.com/urfave/cli"
+	"github.com/urfave/cli/v2"
 )
 
 func List(c *cli.Context) error {
