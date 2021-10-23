@@ -32,7 +32,7 @@ func GetConfigString(s string) (string, error) {
 	if err != nil {
 		return "", errors.New("command failed")
 	}
-	sheetId := configJson.(map[string]interface{})[s].(string)
+	sheetParam := configJson.(map[string]interface{})[s].(string)
 
-	return sheetId, nil
+	return sheetParam, nil
 }
