@@ -70,6 +70,14 @@ func main() {
 			Flags:     []cli.Flag{},
 			ArgsUsage: "",
 		},
+		{
+			Name:      "current",
+			Aliases:   []string{"c"},
+			Usage:     "Show current tracking",
+			Action:    Current,
+			Flags:     []cli.Flag{},
+			ArgsUsage: "",
+		},
 	}
 	if err := app.Run(os.Args); err != nil {
 		_, _ = fmt.Fprintln(os.Stderr, "Error:", err)
