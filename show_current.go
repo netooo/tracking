@@ -31,7 +31,7 @@ func Current(c *cli.Context) error {
 		}
 	}
 
-	fmt.Println("Not tracking")
+	fmt.Println("NotTracking")
 	return nil
 }
 
