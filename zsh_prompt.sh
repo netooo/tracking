@@ -6,6 +6,6 @@ tracking_current() {
   if [ ! -n "$duration" ]; then
       echo "NotTracking"
   else
-      echo "[$duration]"
+      echo "$duration"
   fi
 }
