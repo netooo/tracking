@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	tracking "github.com/netooo/TimeTracking/lib"
+	tracking "github.com/netooo/tracking/lib"
 	"github.com/urfave/cli/v2"
 )
 

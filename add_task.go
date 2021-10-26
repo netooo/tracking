@@ -5,7 +5,7 @@ import (
 	"math/rand"
 	"time"
 
-	tracking "github.com/netooo/TimeTracking/lib"
+	tracking "github.com/netooo/tracking/lib"
 	"github.com/urfave/cli/v2"
 )
 
