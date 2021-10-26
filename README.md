@@ -5,10 +5,10 @@
 ```bash
 $ tracking --help
 NAME:
-   Tracking - Tracking CLI Client
+   tracking - tracking CLI Client
 
 USAGE:
-   TimeTracking [global options] command [command options] [arguments...]
+   tracking [global options] command [command options] [arguments...]
 
 VERSION:
    0.0.1
@@ -31,7 +31,7 @@ GLOBAL OPTIONS:
 To install, use `go get`:
 
 ```bash
-$ go get github.com/netooo/TimeTracking
+$ go get github.com/netooo/tracking
 ```
 
 ## Config
@@ -52,7 +52,7 @@ Issue a google spreadsheet config and paste it:
 ```
 {
   "type": "service_account",
-  "project_id": "your project id",
+  "project_id": "{your project id}",
   "private_key_id": "xxxxxxxxxxxxxxxxxxxxxxxxxxxx",
   "private_key": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
   <snip> 
