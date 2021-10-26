@@ -40,12 +40,21 @@ Set config in `$HOME/.config/tracking/config.json`
 It has following parameters:
 ```
 {
-  "token": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", # todoist api token, required
-  "color": "true"                                      # colorize all output, not required, default false
-}
-{
-  "spread_sheet_id": "xxxxxxxxxxxxxxxxxxxxxxx", # google spread sheet api token
+  "spread_sheet_id": "xxxxxxxxxxxxxxxxxxxxxxx", # favorite google spread sheet id
   "origin_date" : "2021-06-27",                 # first date in your sheet
   "origin_row" : "D"                            # row for the date
+}
+```
+
+Set config in `$HOME/.config/tracking/secret.json` 
+
+Issue a google spreadsheet config and paste it:
+```
+{
+  "type": "service_account",
+  "project_id": "your project id",
+  "private_key_id": "xxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+  "private_key": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+  <snip> 
 }
 ```
