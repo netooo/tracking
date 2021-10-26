@@ -55,7 +55,7 @@ func main() {
 		{
 			Name:    "start",
 			Aliases: []string{"s"},
-			Usage:   "Start Task",
+			Usage:   "Start task",
 			Action:  Start,
 			Flags: []cli.Flag{
 				taskIDFlag,
@@ -65,7 +65,7 @@ func main() {
 		{
 			Name:      "finish",
 			Aliases:   []string{"f"},
-			Usage:     "Finish Task",
+			Usage:     "Finish task",
 			Action:    Finish,
 			Flags:     []cli.Flag{},
 			ArgsUsage: "",

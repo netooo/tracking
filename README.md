@@ -1,8 +1,11 @@
 # TimeTracking CLI Client
 ## Description
+This program will let you use the time tracking in CLI.
+
+And, the tracking data will be automatically entered into the Google Spread Sheet.
 
 ## Usage
-```bash
+```
 $ tracking --help
 NAME:
    tracking - tracking CLI Client
@@ -16,8 +19,8 @@ VERSION:
 COMMANDS:
    list, l     Show task list
    add, a      Add task
-   start, s    Start Task
-   finish, f   Finish Task
+   start, s    Start task
+   finish, f   Finish task
    current, c  Show current tracking
    help, h     Shows a list of commands or help for one command
 
