@@ -29,8 +29,17 @@ GLOBAL OPTIONS:
    --version, -v  print the version (default: false)
 ```
 
-## Install
+## Demo (with [fzf](https://github.com/junegunn/fzf))
+### Add task
+![Add task](https://user-images.githubusercontent.com/46105888/138989198-7935c1ca-330e-4a26-bdd0-39ccd5972b46.gif)
 
+### Start task
+![Start task](https://user-images.githubusercontent.com/46105888/138989560-c84e7d6a-d5f4-4cde-bf3a-e13722412932.gif)
+
+### Finish task
+![Finish task](https://user-images.githubusercontent.com/46105888/138989571-4f01322d-4dbb-4690-ac5b-69278c60f632.gif)
+
+## Install
 To install, use `go get`:
 
 ```bash
