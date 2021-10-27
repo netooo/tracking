@@ -31,13 +31,13 @@ GLOBAL OPTIONS:
 
 ## Demo (with [fzf](https://github.com/junegunn/fzf))
 ### Add task
-![Add task](https://user-images.githubusercontent.com/46105888/138989198-7935c1ca-330e-4a26-bdd0-39ccd5972b46.gif)
+![Add_task](https://user-images.githubusercontent.com/46105888/138991428-e272d358-a340-46de-8692-19884e2ed80e.gif)
 
 ### Start task
-![Start task](https://user-images.githubusercontent.com/46105888/138989560-c84e7d6a-d5f4-4cde-bf3a-e13722412932.gif)
+![Start_task](https://user-images.githubusercontent.com/46105888/138991566-5950085a-05af-4639-bfba-0051c5e99ec4.gif)
 
 ### Finish task
-![Finish task](https://user-images.githubusercontent.com/46105888/138989571-4f01322d-4dbb-4690-ac5b-69278c60f632.gif)
+![Finish_task](https://user-images.githubusercontent.com/46105888/138991571-b54c8900-c94a-42a0-8e72-ed2055f7637f.gif)
 
 ## Install
 To install, use `go get`:
