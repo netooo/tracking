@@ -31,6 +31,10 @@ func main() {
 		Name:  "task, t",
 		Usage: "-task {task id}",
 	}
+	dateFlag := &cli.StringFlag{
+		Name:  "date, d",
+		Usage: "-date {yyyy-mm-dd}",
+	}
 
 	app.Commands = []*cli.Command{
 		{
@@ -76,6 +80,16 @@ func main() {
 			Usage:     "Show current tracking",
 			Action:    Current,
 			Flags:     []cli.Flag{},
+			ArgsUsage: "",
+		},
+		{
+			Name:    "log",
+			Aliases: []string{"l"},
+			Usage:   "Show tracking logs",
+			Action:  Log,
+			Flags: []cli.Flag{
+				dateFlag,
+			},
 			ArgsUsage: "",
 		},
 	}
