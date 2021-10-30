@@ -27,7 +27,7 @@ func CacheInit() error {
 		// Durationを更新
 		// Sheetには書き込まない
 		for i := 1; i < 8; i++ {
-			day := time.Now().AddDate(0, 0, -i).Format("20060102")
+			day := time.Now().AddDate(0, 0, -i).Format("2006-01-02")
 			dayPath := filepath.Join(cacheDir, day+".json")
 
 			if _, err := os.Stat(dayPath); !os.IsNotExist(err) {

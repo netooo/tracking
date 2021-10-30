@@ -17,7 +17,7 @@ var (
 
 	cacheDir  = filepath.Join(basedir.CacheHome, "tracking")
 	TaskPath  = filepath.Join(cacheDir, "task.json")
-	today     = time.Now().Format("20060102")
+	today     = time.Now().Format("2006-01-02")
 	TodayPath = filepath.Join(cacheDir, today+".json")
 )
 
