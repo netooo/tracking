@@ -11,14 +11,14 @@ import (
 )
 
 var (
-	configDir  = filepath.Join(basedir.ConfigHome, "tracking")
-	ConfigPath = filepath.Join(configDir, "config.json")
-	SecretPath = filepath.Join(configDir, "secret.json")
+	ConfigDir  = filepath.Join(basedir.ConfigHome, "tracking")
+	ConfigPath = filepath.Join(ConfigDir, "config.json")
+	SecretPath = filepath.Join(ConfigDir, "secret.json")
 
-	cacheDir  = filepath.Join(basedir.CacheHome, "tracking")
-	TaskPath  = filepath.Join(cacheDir, "task.json")
+	CacheDir  = filepath.Join(basedir.CacheHome, "tracking")
+	TaskPath  = filepath.Join(CacheDir, "task.json")
 	today     = time.Now().Format("2006-01-02")
-	TodayPath = filepath.Join(cacheDir, today+".json")
+	TodayPath = filepath.Join(CacheDir, today+".json")
 )
 
 func GetConfigString(s string) (string, error) {

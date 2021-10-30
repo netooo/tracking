@@ -10,8 +10,8 @@ import (
 )
 
 func CacheInit() error {
-	if _, err := os.Stat(cacheDir); os.IsNotExist(err) {
-		if err := os.Mkdir(cacheDir, 0777); err != nil {
+	if _, err := os.Stat(CacheDir); os.IsNotExist(err) {
+		if err := os.Mkdir(CacheDir, 0777); err != nil {
 			return err
 		}
 	}
@@ -28,7 +28,7 @@ func CacheInit() error {
 		// Sheetには書き込まない
 		for i := 1; i < 8; i++ {
 			day := time.Now().AddDate(0, 0, -i).Format("2006-01-02")
-			dayPath := filepath.Join(cacheDir, day+".json")
+			dayPath := filepath.Join(CacheDir, day+".json")
 
 			if _, err := os.Stat(dayPath); !os.IsNotExist(err) {
 				histories, err := TrackRead(dayPath)
