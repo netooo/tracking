@@ -80,7 +80,8 @@ func CalcHours(t Track, histories []*Track) string {
 }
 
 func GetCell(t Track) (string, error) {
-	now := time.Now().Truncate(time.Hour * 24)
+	// time.Truncate がUTC規格で行われるので先に9時間ずらしておく
+	now := time.Now().UTC().Add(9 * time.Hour).Truncate(time.Hour * 24)
 
 	originDate_, err := GetConfigString("origin_date")
 	if err != nil {
