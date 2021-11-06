@@ -84,7 +84,7 @@ func main() {
 		},
 		{
 			Name:    "log",
-			Aliases: []string{"l"},
+			Aliases: []string{},
 			Usage:   "Show tracking logs",
 			Action:  Log,
 			Flags: []cli.Flag{
