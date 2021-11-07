@@ -1,7 +1,9 @@
 package main
 
 import (
+	"fmt"
 	"path/filepath"
+	"strconv"
 	"time"
 
 	tracking "github.com/netooo/tracking/lib"
@@ -29,7 +31,16 @@ func Log(c *cli.Context) error {
 	}
 
 	for _, log := range histories {
-		//fmt.Println(log)
+		started := log.StartedAt.Format("15:04")
+		finished := log.FinishedAt.Format("15:04")
+		duration := strconv.FormatFloat(log.Duration.Minutes(), 'f', 0, 64)
+		if log.Duration == 0 {
+			finished = " Now "
+			duration_ := time.Now().Sub(log.StartedAt).Minutes()
+			duration = strconv.FormatFloat(duration_, 'f', 0, 64)
+		}
+
+		fmt.Println(started + "-" + finished + "(" + duration + "m) " + log.Task.Name)
 	}
 
 	return nil
