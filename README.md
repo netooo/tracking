@@ -22,6 +22,7 @@ COMMANDS:
    start, s    Start task
    finish, f   Finish task
    current, c  Show current tracking
+   log         Show tracking logs
    help, h     Shows a list of commands or help for one command
 
 GLOBAL OPTIONS:
@@ -38,6 +39,9 @@ GLOBAL OPTIONS:
 
 ### Finish task
 ![Finish_task](https://user-images.githubusercontent.com/46105888/138991571-b54c8900-c94a-42a0-8e72-ed2055f7637f.gif)
+
+### Show logs
+![Show_log](https://user-images.githubusercontent.com/46105888/140651511-1dfab850-f0a5-4df5-9d8a-6d94841e12c7.gif)
 
 ## Install
 To install, use `go get`:
