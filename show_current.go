@@ -35,9 +35,9 @@ func Current(c *cli.Context) error {
 	return nil
 }
 
-func calcDuration(startedAt time.Time) time.Duration {
+func calcDuration(t time.Time) time.Duration {
 	now := time.Now()
-	return now.Sub(startedAt)
+	return now.Sub(t)
 }
 
 func formatDuration(duration time.Duration) string {
