@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"path/filepath"
 	"strconv"
+	"strings"
 	"time"
 
 	tracking "github.com/netooo/tracking/lib"
@@ -39,8 +40,9 @@ func Log(c *cli.Context) error {
 			duration_ := time.Now().Sub(log.StartedAt).Minutes()
 			duration = strconv.FormatFloat(duration_, 'f', 0, 64)
 		}
+		space := strings.Repeat(" ", 4-len(duration))
 
-		fmt.Println(started + "-" + finished + "(" + duration + "m) " + log.Task.Name)
+		fmt.Println(started + "-" + finished + "(" + duration + "m)" + space + log.Task.Name)
 	}
 
 	return nil
