@@ -71,7 +71,7 @@ func (t Track) Finish(ctx context.Context) error {
 func CalcHours(t Track, histories []*Track) string {
 	var minutes float64 = 0
 	for _, h := range histories {
-		if h.Task.ID == t.Task.ID {
+		if h.Task.ContentLine == t.Task.ContentLine {
 			minutes += h.Duration.Minutes()
 		}
 	}
