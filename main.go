@@ -57,6 +57,16 @@ func main() {
 			ArgsUsage: "",
 		},
 		{
+			Name:    "delete",
+			Aliases: []string{"d"},
+			Usage:   "Delete task",
+			Action:  Delete,
+			Flags: []cli.Flag{
+				taskIDFlag,
+			},
+			ArgsUsage: "",
+		},
+		{
 			Name:    "start",
 			Aliases: []string{"s"},
 			Usage:   "Start task",
