@@ -46,3 +46,35 @@ func (t *Task) Add() error {
 
 	return nil
 }
+
+func (t *Task) Delete() error {
+	taskList, err := TaskRead()
+	if err != nil {
+		return err
+	}
+
+	var newTasks []*Task
+	for i, task := range taskList {
+		if t.ID == task.ID {
+			newTasks = taskList[:i+copy(taskList[i:], taskList[i+1:])]
+			break
+		}
+	}
+
+	//buf, err := json.Marshal(newTasks)
+	//if err != nil {
+	//	return err
+	//}
+	//
+	//f, err := os.OpenFile(TaskPath, os.O_CREATE|os.O_WRONLY|os.O_CREATE, 0600)
+	//if err != nil {
+	//	return err
+	//}
+	//defer f.Close()
+	//
+	//if _, err = f.Write(buf); err != nil {
+	//	return err
+	//}
+
+	return nil
+}
