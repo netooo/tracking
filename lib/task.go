@@ -34,7 +34,7 @@ func (t *Task) Add() error {
 		return err
 	}
 
-	f, err := os.OpenFile(TaskPath, os.O_CREATE|os.O_WRONLY|os.O_CREATE, 0600)
+	f, err := os.OpenFile(TaskPath, os.O_CREATE|os.O_WRONLY, 0600)
 	if err != nil {
 		return err
 	}
