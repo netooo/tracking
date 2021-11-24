@@ -61,20 +61,20 @@ func (t *Task) Delete() error {
 		}
 	}
 
-	//buf, err := json.Marshal(newTasks)
-	//if err != nil {
-	//	return err
-	//}
-	//
-	//f, err := os.OpenFile(TaskPath, os.O_CREATE|os.O_WRONLY|os.O_CREATE, 0600)
-	//if err != nil {
-	//	return err
-	//}
-	//defer f.Close()
-	//
-	//if _, err = f.Write(buf); err != nil {
-	//	return err
-	//}
+	buf, err := json.Marshal(newTasks)
+	if err != nil {
+		return err
+	}
+
+	f, err := os.Create(TaskPath)
+	if err != nil {
+		return err
+	}
+	defer f.Close()
+
+	if _, err = f.Write(buf); err != nil {
+		return err
+	}
 
 	return nil
 }
