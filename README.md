@@ -19,6 +19,7 @@ VERSION:
 COMMANDS:
    list, l     Show task list
    add, a      Add task
+   delete, d   Delete task
    start, s    Start task
    finish, f   Finish task
    current, c  Show current tracking
