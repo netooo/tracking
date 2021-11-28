@@ -41,6 +41,9 @@ GLOBAL OPTIONS:
 ### Finish task
 ![Finish_task](https://user-images.githubusercontent.com/46105888/138991571-b54c8900-c94a-42a0-8e72-ed2055f7637f.gif)
 
+### Delete task
+![Delete_task](https://user-images.githubusercontent.com/46105888/143774752-17b89b01-ede4-4e5e-93af-ba00bc237e01.gif)
+
 ### Show logs
 ![Show_log](https://user-images.githubusercontent.com/46105888/140651511-1dfab850-f0a5-4df5-9d8a-6d94841e12c7.gif)
 
