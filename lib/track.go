@@ -3,6 +3,7 @@ package tracking
 import (
 	"context"
 	"fmt"
+	"github.com/andygrunwald/go-jira"
 	"math"
 	"strconv"
 	"time"
@@ -45,26 +46,47 @@ func (t Track) Finish(ctx context.Context) error {
 		return err
 	}
 
-	client, err := NewSheetClient(ctx)
-	if err != nil {
-		return err
+	if t.Task.ContentLine > 0 {
+		client, err := NewSheetClient(ctx)
+		if err != nil {
+			return err
+		}
+
+		hours := CalcHours(t, newHistories)
+
+		cell, err := GetCell(t)
+		if err != nil {
+			return err
+		}
+
+		if err := client.Update(cell, [][]interface{}{
+			{
+				hours,
+			},
+		}); err != nil {
+			return err
+		}
 	}
 
-	hours := CalcHours(t, newHistories)
+	if t.Task.IssueId != "" {
+		client, err := NewJiraClient()
+		if err != nil {
+			return err
+		}
 
-	cell, err := GetCell(t)
-	if err != nil {
-		return err
+		now := time.Now()
+		started := t.StartedAt
+		record := jira.WorklogRecord{
+			Created:          (*jira.Time)(&now),
+			Updated:          (*jira.Time)(&now),
+			Started:          (*jira.Time)(&started),
+			TimeSpentSeconds: int(t.Duration.Seconds()),
+		}
+
+		if err := client.AddWorklog(t.Task.IssueId, &record); err != nil {
+			return err
+		}
 	}
-
-	if err := client.Update(cell, [][]interface{}{
-		{
-			hours,
-		},
-	}); err != nil {
-		return err
-	}
-
 	return nil
 }
 
