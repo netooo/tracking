@@ -14,6 +14,7 @@ type Task struct {
 	ID          int    `json:"id"`
 	Name        string `json:"name"`
 	ContentLine int    `json:"content_line"`
+	IssueId     string `json:"issue_id"`
 }
 
 func (t *Task) Add() error {

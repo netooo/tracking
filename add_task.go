@@ -15,7 +15,7 @@ func Add(c *cli.Context) error {
 	if c.String("name") == "" {
 		return errors.New("command failed")
 	}
-	if c.Int("line") == 0 {
+	if c.Int("line") == 0 && c.String("jira") == "" {
 		return errors.New("command failed")
 	}
 
@@ -23,6 +23,7 @@ func Add(c *cli.Context) error {
 	task.ID = rand.Intn(99999999) + 1
 	task.Name = c.String("name")
 	task.ContentLine = c.Int("line")
+	task.IssueId = c.String("jira")
 
 	if err := task.Add(); err != nil {
 		return err

@@ -27,6 +27,11 @@ func main() {
 		Usage: "-line {content line number}",
 	}
 
+	jiraIssueFlag := &cli.StringFlag{
+		Name:  "jira, j",
+		Usage: "-jira {jira issue ID or Key}",
+	}
+
 	taskIDFlag := &cli.IntFlag{
 		Name:  "task, t",
 		Usage: "-task {task id}",
@@ -53,6 +58,7 @@ func main() {
 			Flags: []cli.Flag{
 				taskNameFlag,
 				contentLineFlag,
+				jiraIssueFlag,
 			},
 			ArgsUsage: "",
 		},
