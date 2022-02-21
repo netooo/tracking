@@ -2,7 +2,7 @@
 ## Description
 This program will let you use the time tracking in CLI.
 
-And, the tracking data will be automatically entered into the Google Spread Sheet.
+And, the tracking data will be automatically entered into the Google Spread Sheet and Jira.
 
 ## Usage
 ```
@@ -55,6 +55,7 @@ $ go get github.com/netooo/tracking
 ```
 
 ## Config
+### Google Spread Sheet
 Set config in `$HOME/.config/tracking/config.json`
 
 It has following parameters:
@@ -76,5 +77,20 @@ Issue a google spreadsheet config and paste it:
   "private_key_id": "xxxxxxxxxxxxxxxxxxxxxxxxxxxx",
   "private_key": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
   <snip> 
+}
+```
+
+### Jira
+Create Jira Token:
+https://id.atlassian.com/manage-profile/security/api-tokens
+
+Set config in `$HOME/.config/tracking/config.json`
+
+It has following parameters:
+```
+{
+  "jira_name" : "{your email address}",
+  "jira_token" : "{your token}",
+  "jira_domain" : "{domain}" 
 }
 ```
